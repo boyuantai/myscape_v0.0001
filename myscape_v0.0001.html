@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MyScape</title>
+</head>
+<body>
+
+<!--
+
+Outline of MyScape:
+
+1. Player Map
+
+This is the main view where you perform an action such as cutting a tree, fishing for fish, or mining for iron ore.
+
+2. Player Inventory
+
+There are 8 inventory slots. Each slot 
+
+-->
+
+
+
+<center>
+
+<table>
+
+<tr>
+
+<!-- Player Map -->
+
+<td>
+
+<img id="mainView" src="https://static1.squarespace.com/static/59b167abcd0f6832f1db07e8/t/5aac346970a6adbf548419aa/1553259672163/Hackberry2.jpg" alt="tree" style="width:500px;height:600px;" onclick="mainAction()">
+
+</td>
+
+<!-- Player Inventory -->
+<td>
+
+<table>
+
+  <tr>
+    <td><a id="inv0"><img id="img0" src="https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg" alt="nothing" style="width:50px;height:50px;" onclick="dropItem0()"></a></td>
+    <td><a id="inv1"><img id="img1"  src="https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg" alt="nothing" style="width:50px;height:50px;" onclick="dropItem1()"></a></td> 
+    <td><a id="inv2"><img id="img2" src="https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg" alt="nothing" style="width:50px;height:50px;" onclick="dropItem2()"></a></td>
+    <td><a id="inv3"><img id="img3" src="https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg" alt="nothing" style="width:50px;height:50px;" onclick="dropItem3()"></a></td>
+  </tr>
+
+  <tr>
+    <td><a id="inv4"><img id="img4" src="https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg" alt="nothing" style="width:50px;height:50px;" onclick="dropItem4()"></a></td>
+    <td><a id="inv5"><img id="img5" src="https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg" alt="nothing" style="width:50px;height:50px;" onclick="dropItem5()"></a></td> 
+    <td><a id="inv6"><img id="img6" src="https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg" alt="nothing" style="width:50px;height:50px;" onclick="dropItem6()"></a></td>
+    <td><a id="inv7"><img id="img7" src="https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg" alt="nothing" style="width:50px;height:50px;" onclick="dropItem7()"></a></td>
+  </tr>
+
+<!-- Player Tools -->
+
+  <tr>
+
+    <td><img id="tool0" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/White_lighter_with_flame.JPG/220px-White_lighter_with_flame.JPG" alt="lighter" style="width:50px;height:50px;" onclick="lightLogs()"></td>
+    <td><img id="tool1" src="https://cdn.emersonknives.com/wp-content/uploads/2018/12/Huck-Richlite-1.jpg" alt="knife" style="width:50px;height:50px;" onclick="fletchLogs()"></td>
+    <td></td>
+    <td></td>
+
+  </tr>
+
+<!-- Navigation -->
+
+  <tr>
+    <td><img id="nav0" src="https://shopkarls.com/blog/wp-content/uploads/2017/07/big-fish-small-waters-post-862x451.jpg" alt="navigate" style="width:50px;height:50px;" onclick="navigate()"></td>
+    <td><img id="nav1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Stone_quarry_adelaide.JPG/220px-Stone_quarry_adelaide.JPG" alt="navigate2" style="width:50px;height:50px;" onclick="navigate2()"></td>
+  </tr>
+
+<!-- Actions -->
+
+  <tr>
+    <td><img id="action0" src="https://cdn2.newsok.biz/cache/large960_blur-15029bd3510826c2bb889349089512e6.jpg" style="width:50px;height:50px;" onclick="cook()"></td>
+  </tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</center>
+
+<script>
+
+// Item ID Table
+// 0 - nothing
+// 1 - logs
+// 2 - campfire
+// 3 - bow
+// 4 - fish
+// 5 - cooked fish
+// 6 - ironOre
+
+// Area ID Table
+// 0 - Forest
+// 1 - Pond
+// 2 - Quarry
+
+var item0 = 0;
+var item1 = 0;
+var item2 = 0;
+var item3 = 0;
+var item4 = 0;
+var item5 = 0;
+var item6 = 0;
+var item7 = 0;
+
+var area = 0;
+var hasFire = 0;
+
+function cook() {
+
+var cookedFish = "https://www.gimmesomeoven.com/wp-content/uploads/2018/06/How-To-Cook-Whole-Fish-In-The-Oven-Baked-Roastted-Mahi-Mahi-Recipe-3.jpg";
+
+if (item0 == 4 && hasFire == 1) {
+document.getElementById("img0").src = cookedFish;
+item0 = 5;
+} else if (item1 == 4 && hasFire == 1) {
+document.getElementById("img1").src = cookedFish;
+item1 = 5;
+} else if (item2 == 4 && hasFire == 1) {
+document.getElementById("img2").src = cookedFish;
+item2 = 5;
+} else if (item3 == 4 && hasFire == 1) {
+document.getElementById("img3").src = cookedFish;
+item3 = 5;
+} else if (item4 == 4 && hasFire == 1) {
+document.getElementById("img4").src = cookedFish;
+item4 = 5;
+} else if (item5 == 4 && hasFire == 1) {
+document.getElementById("img5").src = cookedFish;
+item5 = 5;
+} else if (item6 == 4 && hasFire == 1) {
+document.getElementById("img6").src = cookedFish;
+item6 = 5;
+} else if (item7 == 4 && hasFire == 1) {
+document.getElementById("img7").src = cookedFish;
+item7 = 5;
+} else {}
+
+}
+
+function chopTree() {
+
+var logs = "https://cdn.shopify.com/s/files/1/2536/0358/products/Logs_001.jpg?v=1516850999";
+
+if (item0 == 0) {
+	document.getElementById("img0").src = logs;
+	item0 = 1;
+} else if (item1 == 0) {
+	document.getElementById("img1").src = logs;
+	item1 = 1;
+} else if (item2 == 0) {
+	document.getElementById("img2").src = logs;
+	item2 = 1;
+} else if (item3 == 0) {
+	document.getElementById("img3").src = logs;
+	item3 = 1;
+} else if (item4 == 0) {
+	document.getElementById("img4").src = logs;
+	item4 = 1;
+} else if (item5 == 0) {
+	document.getElementById("img5").src = logs;
+	item5 = 1;
+} else if (item6 == 0) {
+	document.getElementById("img6").src = logs;
+	item6 = 1;
+} else if (item7 == 0) {
+	document.getElementById("img7").src = logs;
+	item7 = 1;
+} else {}
+
+}
+
+function fishPond() {
+
+var fish = "https://www.hakaimagazine.com/wp-content/uploads/header-fish-formation.jpg";
+
+if (item0 == 0) {
+	document.getElementById("img0").src = fish;
+	item0 = 4;
+} else if (item1 == 0) {
+	document.getElementById("img1").src = fish;
+	item1 = 4;
+} else if (item2 == 0) {
+	document.getElementById("img2").src = fish;
+	item2 = 4;
+} else if (item3 == 0) {
+	document.getElementById("img3").src = fish;
+	item3 = 4;
+} else if (item4 == 0) {
+	document.getElementById("img4").src = fish;
+	item4 = 4;
+} else if (item5 == 0) {
+	document.getElementById("img5").src = fish;
+	item5 = 4;
+} else if (item6 == 0) {
+	document.getElementById("img6").src = fish;
+	item6 = 4;
+} else if (item7 == 0) {
+	document.getElementById("img7").src = fish;
+	item7 = 4;
+} else {}
+
+}
+
+function mineOre() {
+
+var ironOre = "http://www.mining.com/wp-content/uploads/2016/04/iron-ore-lump-900.jpg"
+
+if (item0 == 0) {
+	document.getElementById("img0").src = ironOre;
+	item0 = 6;
+} else if (item1 == 0) {
+	document.getElementById("img1").src = ironOre;
+	item1 = 6;
+} else if (item2 == 0) {
+	document.getElementById("img2").src = ironOre;
+	item2 = 6;
+} else if (item3 == 0) {
+	document.getElementById("img3").src = ironOre;
+	item3 = 6;
+} else if (item4 == 0) {
+	document.getElementById("img4").src = ironOre;
+	item4 = 6;
+} else if (item5 == 0) {
+	document.getElementById("img5").src = ironOre;
+	item5 = 6;
+} else if (item6 == 0) {
+	document.getElementById("img6").src = ironOre;
+	item6 = 6;
+} else if (item7 == 0) {
+	document.getElementById("img7").src = ironOre;
+	item7 = 6;
+} else {}
+
+}
+
+function mainAction() {
+
+if (area == 0) {
+	chopTree();
+} else if (area == 1) {
+	fishPond();
+} else if (area == 2) {
+	mineOre();
+} else {}
+
+}
+
+function dropItem0() {
+var nothing = "https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg";
+document.getElementById("img0").src = nothing;
+item0 = 0;
+} function dropItem1() {
+var nothing = "https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg";
+document.getElementById("img1").src = nothing;
+item1 = 0;
+} function dropItem2() {
+var nothing = "https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg";
+document.getElementById("img2").src = nothing;
+item2 = 0;
+} function dropItem3() {
+var nothing = "https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg";
+document.getElementById("img3").src = nothing;
+item3 = 0;
+} function dropItem4() {
+var nothing = "https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg";
+document.getElementById("img4").src = nothing;
+item4 = 0;
+} function dropItem5() {
+var nothing = "https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg";
+document.getElementById("img5").src = nothing;
+item5 = 0;
+} function dropItem6() {
+var nothing = "https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg";
+document.getElementById("img6").src = nothing;
+item6 = 0;
+} function dropItem7() {
+var nothing = "https://i.ebayimg.com/images/g/2Y0AAOSwXeJYJ1n8/s-l300.jpg";
+document.getElementById("img7").src = nothing;
+item7 = 0;
+}
+
+function lightLogs() {
+
+var campfire = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Campfire_Pinecone.png/200px-Campfire_Pinecone.png";
+
+if (item0 == 1) {
+	document.getElementById("img0").src = campfire;
+	item0 = 2;
+	hasFire = 1;
+} else if (item1 == 1) {
+	document.getElementById("img1").src = campfire;
+	item1 = 2;
+	hasFire = 1;
+} else if (item2 == 1) {
+	document.getElementById("img2").src = campfire;
+	item2 = 2;
+	hasFire = 1;
+} else if (item3 == 1) {
+	document.getElementById("img3").src = campfire;
+	item3 = 2;
+	hasFire = 1;
+} else if (item4 == 1) {
+	document.getElementById("img4").src = campfire;
+	item4 = 2;
+	hasFire = 1;
+} else if (item5 == 1) {
+	document.getElementById("img5").src = campfire;
+	item5 = 2;
+	hasFire = 1;
+} else if (item6 == 1) {
+	document.getElementById("img6").src = campfire;
+	item6 = 2;
+	hasFire = 1;
+} else if (item7 == 1) {
+	document.getElementById("img7").src = campfire;
+	item7 = 2;
+	hasFire = 1;
+} else {}
+
+}
+
+function fletchLogs() {
+var bow = "https://cdn.shopify.com/s/files/1/2110/3047/products/caribou_600x.jpg?v=1556549319";
+
+if (item0 == 1) {
+	document.getElementById("img0").src = bow;
+	item0 = 3;
+} else if (item1 == 1) {
+	document.getElementById("img1").src = bow;
+	item1 = 3;
+} else if (item2 == 1) {
+	document.getElementById("img2").src = bow;
+	item2 = 3;
+} else if (item3 == 1) {
+	document.getElementById("img3").src = bow;
+	item3 = 3;
+} else if (item4 == 1) {
+	document.getElementById("img4").src = bow;
+	item4 = 3;
+} else if (item5 == 1) {
+	document.getElementById("img5").src = bow;
+	item5 = 3;
+} else if (item6 == 1) {
+	document.getElementById("img6").src = bow;
+	item6 = 3;
+} else if (item7 == 1) {
+	document.getElementById("img7").src = bow;
+	item7 = 3;
+} else {}
+
+}
+
+function navigate() {
+
+var pond = "https://shopkarls.com/blog/wp-content/uploads/2017/07/big-fish-small-waters-post-862x451.jpg";
+
+var treeView = "https://static1.squarespace.com/static/59b167abcd0f6832f1db07e8/t/5aac346970a6adbf548419aa/1553259672163/Hackberry2.jpg";
+
+var quarryView = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Stone_quarry_adelaide.JPG/220px-Stone_quarry_adelaide.JPG";
+
+if (area == 0) {
+	document.getElementById("mainView").src = pond;
+	document.getElementById("nav0").src = treeView;
+	area = 1;
+} else if (area == 1) {
+	document.getElementById("mainView").src = treeView;
+	document.getElementById("nav0").src = pond;
+	area = 0;
+} else if (area == 2) {
+	document.getElementById("mainView").src = pond;
+	document.getElementById("nav0").src = treeView;
+	area = 1;
+} else {}
+
+
+}
+
+function navigate2() {
+
+var pond = "https://shopkarls.com/blog/wp-content/uploads/2017/07/big-fish-small-waters-post-862x451.jpg";
+
+var treeView = "https://static1.squarespace.com/static/59b167abcd0f6832f1db07e8/t/5aac346970a6adbf548419aa/1553259672163/Hackberry2.jpg";
+
+var quarryView = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Stone_quarry_adelaide.JPG/220px-Stone_quarry_adelaide.JPG";
+
+area = 2;
+
+document.getElementById("mainView").src = quarryView;
+
+document.getElementById("nav0").src = pond;
+
+}
+
+</script>
+
+</body>
+</html>
